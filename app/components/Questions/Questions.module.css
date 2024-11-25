@@ -1,22 +1,28 @@
+/* Kontener dla komponentu */
 .container {
-  font-family: Arial, sans-serif;
   text-align: center;
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #1e1e1e; /* Ciemne tło */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 255, 255, 0.1);
+  color: #f5f5f5; /* Jasny tekst */
 }
 
+/* Nagłówek */
 .heading {
-  font-size: 20px;
+  font-size: 2rem;
   margin-bottom: 20px;
-  color: #333;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  color: #e0e0e0;
+  text-shadow: 0 0 10px #ffffff, 0 0 20px #4f4fff;
 }
 
+/* Styl dla przycisku */
 .button {
-  background-color: #007bff;
+  background-color: #4f4fff; /* Niebieski pasujący do tytułu */
   color: white;
   border: none;
   border-radius: 5px;
@@ -24,14 +30,22 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
+/* Efekt hover */
 .button:hover {
-  background-color: #0056b3;
+  background-color: #3737e6;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #4f4fff, 0 0 20px #3737e6;
 }
 
+/* Pytanie */
 .question {
   margin-top: 20px;
-  font-size: 18px;
-  color: #555;
+  font-size: 1.2rem;
+  font-family: "Poppins", sans-serif;
+  color: #b0b0ff; /* Jasny niebieski */
+  text-shadow: 0 0 10px #7f7fff, 0 0 15px #4f4fff;
 }
