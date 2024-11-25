@@ -1,0 +1,59 @@
+.container {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.recording {
+  color: green;
+}
+
+.notRecording {
+  color: black;
+}
+
+.button {
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.button.recording {
+  background-color: red;
+}
+
+/* .microphone {
+  width: 24px;
+  height: 24pc;
+  margin-right: 10px;
+  vertical-align: middle;
+} */
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}

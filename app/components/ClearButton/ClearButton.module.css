@@ -1,0 +1,19 @@
+.clearButton {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.clearButton:hover {
+  background-color: #ff4a3a;
+}
+
+.clearButton:active {
+  background-color: #e53935;
+}
