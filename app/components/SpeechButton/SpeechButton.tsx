@@ -22,7 +22,6 @@ const SpeechButtonClient: React.FC = () => {
     useLegacyResults: false,
   });
 
-  // Start/Stop timer for recording
   useEffect(() => {
     if (isRecording) {
       const start = Date.now();
@@ -35,7 +34,7 @@ const SpeechButtonClient: React.FC = () => {
         clearInterval(timer);
         setTimer(null);
       }
-      setRecordingTime(0); // Reset the timer when not recording
+      setRecordingTime(0); 
     }
   }, [isRecording]);
 
