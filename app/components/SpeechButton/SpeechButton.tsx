@@ -20,6 +20,7 @@ const SpeechButtonClient: React.FC = () => {
   } = useSpeechToText({
     continuous: true,
     useLegacyResults: false,
+    timeout: Infinity,
   });
 
   useEffect(() => {
@@ -85,7 +86,9 @@ const SpeechButtonClient: React.FC = () => {
         <img
           src="/icons/microphone.svg"
           alt="Microphone"
-          className={styles.microphone}
+          className={`${styles.microphone} ${
+            isRecording ? styles.recording : ""
+          }`}
         />
         {isRecording ? "Stop Recording" : "Start Recording"}
       </button>
