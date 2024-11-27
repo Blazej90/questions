@@ -11,12 +11,56 @@ body {
   box-sizing: border-box;
 }
 
+/* Stylizacja przycisku logowania */
+.sign-in-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.sign-in-container > button {
+  background-color: #4f4fff; /* Kolor tła przycisku */
+  color: white; /* Kolor tekstu */
+  border-radius: 8px; /* Zaokrąglenie krawędzi */
+  padding: 10px 20px; /* Wewnętrzne marginesy */
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: none;
+}
+
+.sign-in-container > button:hover {
+  background-color: #3737e6; /* Kolor przycisku po najechaniu */
+  transform: scale(1.05); /* Powiększenie przycisku */
+}
+
+/* Stylizacja UserButton */
 .user-button {
   position: absolute;
   top: 20px;
   right: 20px;
   z-index: 1000;
+  width: 50px; /* Szerokość UserButton */
+  height: 50px; /* Wysokość UserButton */
 }
+
 .user-button > button {
-  border: none;
+  width: 100%; /* Wypełnia całą szerokość kontenera */
+  height: 100%; /* Wypełnia całą wysokość kontenera */
+  border-radius: 50%; /* Zaokrąglenie do okręgu */
+  background-color: #4f4fff; /* Tło przycisku */
+  color: white; /* Kolor tekstu */
+  font-size: 1.5rem; /* Powiększenie tekstu */
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.user-button > button:hover {
+  background-color: #3737e6; /* Kolor przycisku po najechaniu */
+  transform: scale(1.1); /* Powiększenie przycisku */
 }
