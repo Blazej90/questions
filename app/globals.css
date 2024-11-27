@@ -11,7 +11,6 @@ body {
   box-sizing: border-box;
 }
 
-/* Stylizacja przycisku logowania */
 .sign-in-container {
   position: absolute;
   top: 20px;
@@ -19,10 +18,10 @@ body {
 }
 
 .sign-in-container > button {
-  background-color: #4f4fff; /* Kolor tła przycisku */
-  color: white; /* Kolor tekstu */
-  border-radius: 8px; /* Zaokrąglenie krawędzi */
-  padding: 10px 20px; /* Wewnętrzne marginesy */
+  background-color: #4f4fff;
+  color: white;
+  border-radius: 8px;
+  padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
@@ -31,27 +30,26 @@ body {
 }
 
 .sign-in-container > button:hover {
-  background-color: #3737e6; /* Kolor przycisku po najechaniu */
-  transform: scale(1.05); /* Powiększenie przycisku */
+  background-color: #3737e6;
+  transform: scale(1.05);
 }
 
-/* Stylizacja UserButton */
 .user-button {
   position: absolute;
   top: 20px;
   right: 20px;
   z-index: 1000;
-  width: 50px; /* Szerokość UserButton */
-  height: 50px; /* Wysokość UserButton */
+  width: 50px;
+  height: 50px;
 }
 
 .user-button > button {
-  width: 100%; /* Wypełnia całą szerokość kontenera */
-  height: 100%; /* Wypełnia całą wysokość kontenera */
-  border-radius: 50%; /* Zaokrąglenie do okręgu */
-  background-color: #4f4fff; /* Tło przycisku */
-  color: white; /* Kolor tekstu */
-  font-size: 1.5rem; /* Powiększenie tekstu */
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #4f4fff;
+  color: white;
+  font-size: 1.5rem;
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -61,6 +59,6 @@ body {
 }
 
 .user-button > button:hover {
-  background-color: #3737e6; /* Kolor przycisku po najechaniu */
-  transform: scale(1.1); /* Powiększenie przycisku */
+  background-color: #3737e6;
+  transform: scale(1.1);
 }
