@@ -5,7 +5,7 @@ import useSpeechToText from "react-hook-speech-to-text";
 import styles from "./SpeechButton.module.css";
 import ClearButton from "../ClearButton/ClearButton";
 
-const SpeechButtonClient: React.FC = () => {
+const SpeechButton: React.FC = () => {
   const [localResults, setLocalResults] = useState<string[]>([]);
   const [recordingTime, setRecordingTime] = useState<number>(0);
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
@@ -94,13 +94,19 @@ const SpeechButtonClient: React.FC = () => {
       </button>
       <ul className={styles.list}>
         {localResults.map((result, index) => (
-          <li key={index}>{result}</li>
+          <li key={index} className={styles.resultItem}>
+            {result}
+          </li>
         ))}
-        {interimResult && <li>{interimResult}</li>}
+        {interimResult && (
+          <li className={`${styles.resultItem} ${styles.interim}`}>
+            {interimResult}
+          </li>
+        )}
       </ul>
       <ClearButton onClear={clearResults} />
     </div>
   );
 };
 
-export default SpeechButtonClient;
+export default SpeechButton;
