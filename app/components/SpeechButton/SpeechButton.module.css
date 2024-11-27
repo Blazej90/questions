@@ -18,7 +18,7 @@
   text-shadow: 0 0 10px #ffffff, 0 0 20px #4f4fff;
 }
 
-.button {
+.speechButton {
   display: inline-flex;
   align-items: center;
   background-color: #4f4fff;
@@ -35,7 +35,7 @@
   box-shadow: 0 4px 10px rgba(79, 79, 255, 0.4), 0 0 15px rgba(79, 79, 255, 0.6);
 }
 
-.button:hover {
+.speechButton:hover {
   transform: scale(1.1);
   box-shadow: 0 6px 15px rgba(79, 79, 255, 0.6), 0 0 20px rgba(79, 79, 255, 0.8);
   background-color: #3737e6;

@@ -22,7 +22,7 @@ const QuestionPicker: React.FC = () => {
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>Wylosuj pytanie</h2>
-      <button className={styles.button} onClick={getRandomQuestion}>
+      <button className={styles.questionButton} onClick={getRandomQuestion}>
         Losuj pytanie
       </button>
       {currentQuestion && (

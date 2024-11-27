@@ -34,7 +34,7 @@ const SpeechButtonClient: React.FC = () => {
         clearInterval(timer);
         setTimer(null);
       }
-      setRecordingTime(0); 
+      setRecordingTime(0);
     }
   }, [isRecording]);
 
@@ -78,7 +78,9 @@ const SpeechButtonClient: React.FC = () => {
       </h1>
       <button
         onClick={isRecording ? stopSpeechToText : startSpeechToText}
-        className={`${styles.button} ${isRecording ? styles.recording : ""}`}
+        className={`${styles.speechButton} ${
+          isRecording ? styles.recording : ""
+        }`}
       >
         <img
           src="/icons/microphone.svg"

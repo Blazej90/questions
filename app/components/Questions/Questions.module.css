@@ -18,7 +18,7 @@
   text-shadow: 0 0 10px #ffffff, 0 0 20px #4f4fff;
 }
 
-.button {
+.questionButton {
   background-color: #4f4fff;
   color: white;
   border: none;
@@ -31,7 +31,7 @@
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.button:hover {
+.questionButton:hover {
   background-color: #3737e6;
   transform: scale(1.1);
   box-shadow: 0 0 10px #4f4fff, 0 0 20px #3737e6;
