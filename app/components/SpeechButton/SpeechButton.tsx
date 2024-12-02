@@ -2,9 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import useSpeechToText from "react-hook-speech-to-text";
-import Image from "next/image";
-import styles from "./SpeechButton.module.css";
+import styles from "../SpeechButton/SpeechButton.module.css";
 import ClearButton from "../ClearButton/ClearButton";
+import RecordingTimer from "../RecordingTimer/RecordingTimer";
+import MicrophoneButton from "../MicrophoneButton/MicrophoneButton";
+import ResultsList from "../ResultList/ResultList";
 
 const SpeechButton: React.FC = () => {
   const [localResults, setLocalResults] = useState<string[]>([]);
@@ -22,6 +24,7 @@ const SpeechButton: React.FC = () => {
     useLegacyResults: false,
     timeout: Infinity,
   });
+
   useEffect(() => {
     let interval: ReturnType<typeof setInterval> | null = null;
 
@@ -55,16 +58,6 @@ const SpeechButton: React.FC = () => {
     await startSpeechToText();
   };
 
-  const formatTime = (time: number) => {
-    const hours = Math.floor(time / 3600);
-    const minutes = Math.floor((time % 3600) / 60);
-    const seconds = time % 60;
-
-    return [hours, minutes, seconds]
-      .map((unit) => unit.toString().padStart(2, "0"))
-      .join(":");
-  };
-
   if (error) {
     return (
       <p className={styles.error}>
@@ -75,42 +68,15 @@ const SpeechButton: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <h1
-        className={`${styles.heading} ${
-          isRecording ? styles.recording : styles.notRecording
-        }`}
-      >
-        Recording: {isRecording ? formatTime(recordingTime) : ""}
-      </h1>
-      <button
+      <RecordingTimer isRecording={isRecording} recordingTime={recordingTime} />
+      <MicrophoneButton
+        isRecording={isRecording}
         onClick={isRecording ? stopSpeechToText : handleStartSpeechToText}
-        className={`${styles.speechButton} ${
-          isRecording ? styles.recording : ""
-        }`}
-      >
-        <Image
-          src="/icons/microphone.svg"
-          alt="Microphone"
-          className={`${styles.microphone} ${
-            isRecording ? styles.recording : ""
-          }`}
-          width={24}
-          height={24}
-        />
-        {isRecording ? "Stop Recording" : "Start Recording"}
-      </button>
-      <ul className={styles.list}>
-        {localResults.map((result, index) => (
-          <li key={index} className={styles.resultItem}>
-            {result}
-          </li>
-        ))}
-        {interimResult && (
-          <li className={`${styles.resultItem} ${styles.interim}`}>
-            {interimResult}
-          </li>
-        )}
-      </ul>
+      />
+      <ResultsList
+        results={localResults}
+        interimResult={interimResult ?? null}
+      />
       <ClearButton onClear={clearResults} />
     </div>
   );

@@ -1,0 +1,16 @@
+.heading {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  color: #e0e0e0;
+  text-shadow: 0 0 10px #ffffff, 0 0 20px #4f4fff;
+}
+
+.recording {
+  color: #ff4d4d;
+}
+
+.notRecording {
+  color: #e0e0e0;
+}

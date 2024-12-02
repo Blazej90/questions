@@ -1,0 +1,88 @@
+.speechButton {
+  display: inline-flex;
+  align-items: center;
+  background-color: #4f4fff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+  box-shadow: 0 4px 10px rgba(79, 79, 255, 0.4), 0 0 15px rgba(79, 79, 255, 0.6);
+  position: relative;
+}
+
+.speechButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(79, 79, 255, 0.6), 0 0 20px rgba(79, 79, 255, 0.8);
+  background-color: #3737e6;
+}
+
+.speechButton.recording {
+  background-color: #ff4d4d;
+  box-shadow: 0 4px 10px rgba(255, 77, 77, 0.4), 0 0 15px rgba(255, 77, 77, 0.6);
+}
+
+.speechButton.recording:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(255, 77, 77, 0.6), 0 0 20px rgba(255, 77, 77, 0.8);
+  background-color: #e63c3c;
+}
+
+.speechButton.recording::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(255, 77, 77, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  animation: pulse-wave 1.5s infinite;
+  z-index: -1;
+}
+
+.microphone img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  vertical-align: middle;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.microphone.recording {
+  animation: pulse 1.5s infinite;
+  color: red;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.6));
+  }
+  50% {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.9));
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.6));
+  }
+}
+
+@keyframes pulse-wave {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
