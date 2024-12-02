@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import useSpeechToText from "react-hook-speech-to-text";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 import styles from "../SpeechButton/SpeechButton.module.css";
 import ClearButton from "../ClearButton/ClearButton";
 import RecordingTimer from "../RecordingTimer/RecordingTimer";
@@ -9,75 +11,65 @@ import MicrophoneButton from "../MicrophoneButton/MicrophoneButton";
 import ResultsList from "../ResultList/ResultList";
 
 const SpeechButton: React.FC = () => {
-  const [localResults, setLocalResults] = useState<string[]>([]);
   const [recordingTime, setRecordingTime] = useState<number>(0);
+  const [isClient, setIsClient] = useState(false);
 
   const {
-    error,
-    interimResult,
-    isRecording,
-    results,
-    startSpeechToText,
-    stopSpeechToText,
-  } = useSpeechToText({
-    continuous: true,
-    useLegacyResults: false,
-    timeout: Infinity,
-  });
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
 
   useEffect(() => {
-    let interval: ReturnType<typeof setInterval> | null = null;
+    setIsClient(true);
+  }, []);
 
-    if (isRecording) {
-      const start = Date.now() - recordingTime * 1000;
-      interval = setInterval(() => {
-        setRecordingTime(Math.floor((Date.now() - start) / 1000));
+  useEffect(() => {
+    let timer: NodeJS.Timeout | null = null;
+    if (listening) {
+      timer = setInterval(() => {
+        setRecordingTime((prev) => prev + 1);
       }, 1000);
+    } else if (timer) {
+      clearInterval(timer);
     }
-
     return () => {
-      if (interval) clearInterval(interval);
+      if (timer) clearInterval(timer);
     };
-  }, [isRecording]);
+  }, [listening]);
 
-  useEffect(() => {
-    const processedResults = results.map((result) =>
-      typeof result === "string" ? result : result.transcript
-    );
-    setLocalResults(processedResults);
-  }, [results]);
-
-  const clearResults = () => {
-    setLocalResults([]);
-    setRecordingTime(0);
+  const handleStartListening = () => {
+    if (!listening) {
+      SpeechRecognition.startListening({ continuous: true });
+    }
   };
 
-  const handleStartSpeechToText = async () => {
-    clearResults();
-    await stopSpeechToText();
-    await startSpeechToText();
+  const handleStopListening = () => {
+    if (listening) {
+      SpeechRecognition.stopListening();
+    }
   };
 
-  if (error) {
+  if (!isClient) return null;
+
+  if (!browserSupportsSpeechRecognition) {
     return (
       <p className={styles.error}>
-        Web Speech API is not available in this browser 🤷‍
+        Your browser doesn't support speech recognition.
       </p>
     );
   }
 
   return (
     <div className={styles.container}>
-      <RecordingTimer isRecording={isRecording} recordingTime={recordingTime} />
+      <RecordingTimer isRecording={listening} recordingTime={recordingTime} />
       <MicrophoneButton
-        isRecording={isRecording}
-        onClick={isRecording ? stopSpeechToText : handleStartSpeechToText}
+        isRecording={listening}
+        onClick={listening ? handleStopListening : handleStartListening}
       />
-      <ResultsList
-        results={localResults}
-        interimResult={interimResult ?? null}
-      />
-      <ClearButton onClear={clearResults} />
+      <ResultsList results={[transcript]} interimResult={null} />
+      <ClearButton onClear={resetTranscript} />
     </div>
   );
 };
