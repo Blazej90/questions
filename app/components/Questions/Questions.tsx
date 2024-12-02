@@ -5,11 +5,11 @@ import styles from "./Questions.module.css";
 
 const QuestionPicker: React.FC = () => {
   const questions = [
-    "Czym różni się komponent funkcyjny od klasowego w React?",
     "Jak działa useState i kiedy go używamy?",
     "Co to jest virtual DOM i dlaczego jest używany w React?",
     "Jak przekazywać dane między komponentami za pomocą props?",
     "Jak działa mechanizm kluczy (keys) w React i dlaczego są ważne?",
+    "How are you",
   ];
 
   const [currentQuestion, setCurrentQuestion] = useState<string | null>(null);
