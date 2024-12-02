@@ -9,7 +9,8 @@ const QuestionPicker: React.FC = () => {
     "Co to jest virtual DOM i dlaczego jest używany w React?",
     "Jak przekazywać dane między komponentami za pomocą props?",
     "Jak działa mechanizm kluczy (keys) w React i dlaczego są ważne?",
-    "How are you",
+    "How are you?",
+    "What is your name?",
   ];
 
   const [currentQuestion, setCurrentQuestion] = useState<string | null>(null);
