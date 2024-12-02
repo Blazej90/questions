@@ -56,7 +56,7 @@ const SpeechButton: React.FC = () => {
   if (!browserSupportsSpeechRecognition) {
     return (
       <p className={styles.error}>
-        Your browser doesn't support speech recognition.
+        Your browser does not support speech recognition.
       </p>
     );
   }
