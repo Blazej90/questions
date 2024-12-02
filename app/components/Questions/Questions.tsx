@@ -11,6 +11,7 @@ const QuestionPicker: React.FC = () => {
     "Jak działa mechanizm kluczy (keys) w React i dlaczego są ważne?",
     "How are you?",
     "What is your name?",
+    "Where are you from?",
   ];
 
   const [currentQuestion, setCurrentQuestion] = useState<string | null>(null);
