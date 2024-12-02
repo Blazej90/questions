@@ -12,6 +12,7 @@ const QuestionPicker: React.FC = () => {
     "How are you?",
     "What is your name?",
     "Where are you from?",
+    "What is your favourite car?",
   ];
 
   const [currentQuestion, setCurrentQuestion] = useState<string | null>(null);
