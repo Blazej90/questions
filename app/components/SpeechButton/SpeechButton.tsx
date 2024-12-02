@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import useSpeechToText from "react-hook-speech-to-text";
+import Image from "next/image";
 import styles from "./SpeechButton.module.css";
 import ClearButton from "../ClearButton/ClearButton";
 
 const SpeechButton: React.FC = () => {
   const [localResults, setLocalResults] = useState<string[]>([]);
   const [recordingTime, setRecordingTime] = useState<number>(0);
-  const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
 
   const {
     error,
@@ -22,21 +22,19 @@ const SpeechButton: React.FC = () => {
     useLegacyResults: false,
     timeout: Infinity,
   });
-
   useEffect(() => {
+    let interval: ReturnType<typeof setInterval> | null = null;
+
     if (isRecording) {
-      const start = Date.now();
-      const interval = setInterval(() => {
+      const start = Date.now() - recordingTime * 1000;
+      interval = setInterval(() => {
         setRecordingTime(Math.floor((Date.now() - start) / 1000));
       }, 1000);
-      setTimer(interval);
-    } else {
-      if (timer) {
-        clearInterval(timer);
-        setTimer(null);
-      }
-      setRecordingTime(0);
     }
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
   }, [isRecording]);
 
   useEffect(() => {
@@ -48,6 +46,13 @@ const SpeechButton: React.FC = () => {
 
   const clearResults = () => {
     setLocalResults([]);
+    setRecordingTime(0);
+  };
+
+  const handleStartSpeechToText = async () => {
+    clearResults();
+    await stopSpeechToText();
+    await startSpeechToText();
   };
 
   const formatTime = (time: number) => {
@@ -78,17 +83,19 @@ const SpeechButton: React.FC = () => {
         Recording: {isRecording ? formatTime(recordingTime) : ""}
       </h1>
       <button
-        onClick={isRecording ? stopSpeechToText : startSpeechToText}
+        onClick={isRecording ? stopSpeechToText : handleStartSpeechToText}
         className={`${styles.speechButton} ${
           isRecording ? styles.recording : ""
         }`}
       >
-        <img
+        <Image
           src="/icons/microphone.svg"
           alt="Microphone"
           className={`${styles.microphone} ${
             isRecording ? styles.recording : ""
           }`}
+          width={24}
+          height={24}
         />
         {isRecording ? "Stop Recording" : "Start Recording"}
       </button>
