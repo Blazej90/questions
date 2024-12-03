@@ -12,6 +12,7 @@ import ResultsList from "../ResultList/ResultList";
 
 const SpeechButton: React.FC = () => {
   const [recordingTime, setRecordingTime] = useState<number>(0);
+  const [results, setResults] = useState<string[]>([]); 
   const [isClient, setIsClient] = useState(false);
 
   const {
@@ -39,6 +40,13 @@ const SpeechButton: React.FC = () => {
     };
   }, [listening]);
 
+  useEffect(() => {
+    if (!listening && transcript.trim()) {
+      setResults((prevResults) => [transcript.trim(), ...prevResults]);
+      resetTranscript();
+    }
+  }, [listening, transcript, resetTranscript]);
+
   const handleStartListening = () => {
     if (!listening) {
       SpeechRecognition.startListening({ continuous: true });
@@ -49,6 +57,11 @@ const SpeechButton: React.FC = () => {
     if (listening) {
       SpeechRecognition.stopListening();
     }
+  };
+
+  const handleClear = () => {
+    setResults([]);
+    resetTranscript();
   };
 
   if (!isClient) return null;
@@ -68,8 +81,11 @@ const SpeechButton: React.FC = () => {
         isRecording={listening}
         onClick={listening ? handleStopListening : handleStartListening}
       />
-      <ResultsList results={[transcript]} interimResult={null} />
-      <ClearButton onClear={resetTranscript} />
+      <ResultsList
+        results={results}
+        interimResult={listening ? transcript : null}
+      />
+      <ClearButton onClear={handleClear} />
     </div>
   );
 };
