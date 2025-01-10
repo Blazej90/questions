@@ -16,3 +16,26 @@
   font-family: "Poppins", sans-serif;
   text-shadow: 0 0 10px #ff4d4d, 0 0 20px rgba(255, 77, 77, 0.6);
 }
+
+.feedback {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9; /* Delikatne tło */
+  border: 1px solid #ddd; /* Subtelna ramka */
+  border-radius: 8px; /* Zaokrąglone rogi */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Cień dla efektu 3D */
+}
+
+.feedback strong {
+  color: #333; /* Kolor nagłówka */
+  font-size: 1.2em; /* Większa czcionka dla nagłówka */
+  display: block; /* Wyświetl nagłówek jako osobny blok */
+  margin-bottom: 10px;
+}
+
+.feedback p {
+  color: #555; /* Kolor tekstu */
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 0;
+}

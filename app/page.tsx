@@ -1,14 +1,26 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import SpeechButton from "./components/SpeechButton/SpeechButton";
 import Questions from "./components/Questions/Questions";
 import styles from "./page.module.css";
+import "regenerator-runtime/runtime";
 
 export default function Home() {
+  const [currentQuestion, setCurrentQuestion] = useState<string | null>(null);
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Questions and Answers</h1>
-      <Questions />
-      <SpeechButton />
+      {/* Przekazujemy funkcję do aktualizacji pytania */}
+      <Questions onQuestionChange={setCurrentQuestion} />
+      {currentQuestion && (
+        <div>
+          <h3>Aktualne pytanie: {currentQuestion}</h3>
+          {/* Przekazujemy aktualne pytanie do SpeechButton */}
+          <SpeechButton question={currentQuestion} />
+        </div>
+      )}
     </div>
   );
 }

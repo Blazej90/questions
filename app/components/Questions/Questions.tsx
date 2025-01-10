@@ -3,7 +3,9 @@
 import React, { useState } from "react";
 import styles from "./Questions.module.css";
 
-const QuestionPicker: React.FC = () => {
+const QuestionPicker: React.FC<{
+  onQuestionChange: (question: string) => void;
+}> = ({ onQuestionChange }) => {
   const questions = [
     "Jak działa useState i kiedy go używamy?",
     "Co to jest virtual DOM i dlaczego jest używany w React?",
@@ -15,11 +17,10 @@ const QuestionPicker: React.FC = () => {
     "What is your favourite car?",
   ];
 
-  const [currentQuestion, setCurrentQuestion] = useState<string | null>(null);
-
   const getRandomQuestion = () => {
     const randomIndex = Math.floor(Math.random() * questions.length);
-    setCurrentQuestion(questions[randomIndex]);
+    const question = questions[randomIndex];
+    onQuestionChange(question);
   };
 
   return (
@@ -28,11 +29,6 @@ const QuestionPicker: React.FC = () => {
       <button className={styles.questionButton} onClick={getRandomQuestion}>
         Losuj pytanie
       </button>
-      {currentQuestion && (
-        <p className={styles.question}>
-          <strong>Pytanie:</strong> {currentQuestion}
-        </p>
-      )}
     </div>
   );
 };
