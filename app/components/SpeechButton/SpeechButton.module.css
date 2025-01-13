@@ -20,21 +20,21 @@
 .feedback {
   margin-top: 20px;
   padding: 15px;
-  background-color: #f9f9f9; /* Delikatne tło */
-  border: 1px solid #ddd; /* Subtelna ramka */
-  border-radius: 8px; /* Zaokrąglone rogi */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Cień dla efektu 3D */
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .feedback strong {
-  color: #333; /* Kolor nagłówka */
-  font-size: 1.2em; /* Większa czcionka dla nagłówka */
-  display: block; /* Wyświetl nagłówek jako osobny blok */
+  color: #333;
+  font-size: 1.2em;
+  display: block;
   margin-bottom: 10px;
 }
 
 .feedback p {
-  color: #555; /* Kolor tekstu */
+  color: #555;
   font-size: 1em;
   line-height: 1.5;
   margin: 0;

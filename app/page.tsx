@@ -12,12 +12,10 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Questions and Answers</h1>
-      {/* Przekazujemy funkcję do aktualizacji pytania */}
       <Questions onQuestionChange={setCurrentQuestion} />
       {currentQuestion && (
         <div>
-          <h3>Aktualne pytanie: {currentQuestion}</h3>
-          {/* Przekazujemy aktualne pytanie do SpeechButton */}
+          <h3>Pytanie: {currentQuestion}</h3>
           <SpeechButton question={currentQuestion} />
         </div>
       )}
