@@ -21,7 +21,6 @@ const SpeechButton: React.FC<SpeechButtonProps> = ({ question }) => {
   const [results, setResults] = useState<string[]>([]);
   const [isClient, setIsClient] = useState(false);
   const [feedback, setFeedback] = useState<string | null>(null);
-  const [evaluation, setEvaluation] = useState<string | null>(null);
 
   const {
     transcript,
@@ -52,7 +51,6 @@ const SpeechButton: React.FC<SpeechButtonProps> = ({ question }) => {
     if (!listening && transcript.trim()) {
       setResults((prevResults) => [transcript.trim(), ...prevResults]);
       resetTranscript();
-      // Wyślij tekst do AI
       getAIResponse(transcript);
     }
   }, [listening, transcript, resetTranscript]);
@@ -72,7 +70,6 @@ const SpeechButton: React.FC<SpeechButtonProps> = ({ question }) => {
   const handleClear = () => {
     setResults([]);
     setFeedback(null);
-    setEvaluation(null);
     resetTranscript();
   };
 
@@ -86,40 +83,19 @@ const SpeechButton: React.FC<SpeechButtonProps> = ({ question }) => {
     try {
       const response = await axios.post("/api/openai", {
         userAnswer: userInput,
-        question, // Przekazujemy również aktualne pytanie
+        question,
       });
 
       const aiAnswer = response.data.aiAnswer;
 
       if (aiAnswer) {
         setFeedback(aiAnswer);
-        evaluateResponse(userInput, aiAnswer);
       } else {
         setFeedback("Brak odpowiedzi od AI.");
       }
     } catch (error) {
       console.error("Error getting response from OpenAI:", error);
       setFeedback("Przepraszamy, wystąpił błąd przy uzyskiwaniu odpowiedzi.");
-    }
-  };
-
-  const evaluateResponse = async (userInput: string, aiResponse: string) => {
-    try {
-      const evaluationResponse = await axios.post("/api/evaluate", {
-        userAnswer: userInput,
-        aiAnswer: aiResponse,
-        question, // Przekazujemy również pytanie do oceny
-      });
-
-      const evaluation = evaluationResponse.data.evaluation;
-      if (evaluation !== undefined) {
-        setEvaluation(evaluation);
-      } else {
-        setEvaluation("Brak oceny.");
-      }
-    } catch (error) {
-      console.error("Error evaluating response:", error);
-      setEvaluation("Przepraszamy, wystąpił błąd przy ocenie odpowiedzi.");
     }
   };
 
@@ -154,12 +130,6 @@ const SpeechButton: React.FC<SpeechButtonProps> = ({ question }) => {
         <div className={styles.feedback}>
           <strong>Feedback AI:</strong>
           <p>{feedback}</p>
-        </div>
-      )}
-      {evaluation && (
-        <div className={styles.evaluation}>
-          <strong>Ocena AI:</strong>
-          <p>{evaluation}</p>
         </div>
       )}
     </div>
