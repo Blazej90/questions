@@ -122,10 +122,6 @@ const SpeechButton: React.FC<SpeechButtonProps> = ({ question }) => {
       />
       <ClearButton onClear={handleClear} />
 
-      <div className={styles.question}>
-        <strong>Pytanie:</strong> <p>{question}</p>
-      </div>
-
       {feedback && (
         <div className={styles.feedback}>
           <strong>Feedback AI:</strong>
