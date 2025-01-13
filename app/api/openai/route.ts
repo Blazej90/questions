@@ -32,10 +32,14 @@ export async function POST(req: NextRequest) {
       role: "system" | "user" | "assistant";
       content: string;
     }> = [
-      { role: "system", content: "Jesteś nauczycielem React." },
+      {
+        role: "system",
+        content:
+          "Jesteś nauczycielem React, który ocenia odpowiedzi uczniów. Twoim zadaniem jest udzielenie jasnej i zrozumiałej informacji zwrotnej. Twoje odpowiedzi mają być przyjazne, konkretne i pomocne.",
+      },
       {
         role: "user",
-        content: `Pytanie: ${question}\nOdpowiedź użytkownika: ${userAnswer}\nOceń zgodność i udziel informacji zwrotnej.`,
+        content: `Uczeń odpowiedział na pytanie: "${question}". Jego odpowiedź to: "${userAnswer}". Odpowiedz w prosty sposób, zaczynając od "Twoja odpowiedź była...", a następnie wskaż, co było poprawne, co wymaga poprawy i podaj dodatkowe wskazówki.`,
       },
     ];
 
