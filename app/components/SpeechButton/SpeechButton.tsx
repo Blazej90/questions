@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useEffect } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -18,7 +16,7 @@ interface SpeechButtonProps {
 
 const SpeechButton: React.FC<SpeechButtonProps> = ({ question }) => {
   const [recordingTime, setRecordingTime] = useState<number>(0);
-  const [results, setResults] = useState<string[]>([]);
+  const [results, setResults] = useState<{ text: string; time: number }[]>([]); 
   const [isClient, setIsClient] = useState(false);
   const [feedback, setFeedback] = useState<string | null>(null);
 
@@ -49,7 +47,11 @@ const SpeechButton: React.FC<SpeechButtonProps> = ({ question }) => {
 
   useEffect(() => {
     if (!listening && transcript.trim()) {
-      setResults((prevResults) => [transcript.trim(), ...prevResults]);
+      const timeSpent = recordingTime;
+      setResults((prevResults) => [
+        { text: transcript.trim(), time: timeSpent }, 
+        ...prevResults,
+      ]);
       resetTranscript();
       getAIResponse(transcript);
     }

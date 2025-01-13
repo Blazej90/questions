@@ -1,14 +1,17 @@
 import styles from "./ResultList.module.css";
 
 const ResultsList: React.FC<{
-  results: string[];
+  results: { text: string; time: number }[];
   interimResult: string | null;
 }> = ({ results, interimResult }) => {
   return (
     <ul className={styles.list}>
       {results.map((result, index) => (
         <li key={index} className={styles.resultItem}>
-          {result}
+          <div>{result.text}</div>
+          <div className={styles.time}>
+            Czas odpowiedzi: {formatTime(result.time)}
+          </div>
         </li>
       ))}
       {interimResult && (
@@ -18,6 +21,12 @@ const ResultsList: React.FC<{
       )}
     </ul>
   );
+};
+
+const formatTime = (time: number) => {
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 };
 
 export default ResultsList;
