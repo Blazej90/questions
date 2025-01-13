@@ -28,3 +28,23 @@
     text-shadow: 0 0 20px #7f7fff, 0 0 30px #4f4fff;
   }
 }
+
+.questionSection {
+  margin-top: 30px;
+  padding: 20px;
+  background: #1f1f1f;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  animation: fadeInText 1s ease-out;
+}
+
+.questionText {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #a0cfff;
+  text-shadow: 0 0 15px rgba(160, 207, 255, 0.7),
+    0 0 30px rgba(160, 207, 255, 0.6);
+  font-family: "Poppins", sans-serif;
+  animation: fadeInText 1.5s ease-out;
+}

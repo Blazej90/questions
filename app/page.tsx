@@ -11,11 +11,11 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Questions and Answers</h1>
+      <h1 className={styles.title}>Nauka React.js</h1>
       <Questions onQuestionChange={setCurrentQuestion} />
       {currentQuestion && (
-        <div>
-          <h3>Pytanie: {currentQuestion}</h3>
+        <div className={styles.questionSection}>
+          <h3 className={styles.questionText}>Pytanie: {currentQuestion}</h3>
           <SpeechButton question={currentQuestion} />
         </div>
       )}
