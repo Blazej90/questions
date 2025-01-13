@@ -38,6 +38,23 @@
   animation: pulse 1.5s infinite;
 }
 
+.time {
+  font-size: 14px;
+  color: #76c7c0;
+  margin-top: 5px;
+  font-weight: bold;
+  background-color: rgba(118, 199, 192, 0.2);
+  padding: 5px;
+  border-radius: 5px;
+  text-align: right;
+  transition: all 0.3s ease;
+}
+
+.time:hover {
+  background-color: rgba(118, 199, 192, 0.4);
+  color: #ffffff;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
