@@ -1,12 +1,19 @@
+import React, { useEffect } from "react";
 import styles from "./ResultList.module.css";
 
 const ResultsList: React.FC<{
   results: { text: string; time: number }[];
   interimResult: string | null;
 }> = ({ results, interimResult }) => {
+  const uniqueResults = results.filter(
+    (result, index, self) =>
+      index ===
+      self.findIndex((r) => r.text === result.text && r.time === result.time)
+  );
+
   return (
     <ul className={styles.list}>
-      {results.map((result, index) => (
+      {uniqueResults.map((result, index) => (
         <li key={index} className={styles.resultItem}>
           <div>{result.text}</div>
           <div className={styles.time}>
