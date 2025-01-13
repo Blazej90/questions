@@ -1,22 +1,59 @@
 .feedback {
   margin-top: 20px;
-  padding: 15px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background: linear-gradient(145deg, #1f1f1f, #343434);
+  border: 1px solid #444;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  color: #e0e0e0;
+  font-family: "Poppins", sans-serif;
+  text-align: justify;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
 }
 
 .feedback strong {
-  color: #333;
-  font-size: 1.2em;
-  display: block;
-  margin-bottom: 10px;
+  color: #ffd700;
+  font-size: 1.4em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .feedback p {
-  color: #555;
-  font-size: 1em;
-  line-height: 1.5;
+  color: #dcdcdc;
+  font-size: 1.1em;
+  line-height: 1.6;
   margin: 0;
+  word-wrap: break-word;
+}
+
+.feedback:hover {
+  background: linear-gradient(145deg, #343434, #1f1f1f);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.feedback:active {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.feedback::before {
+  content: "💬";
+  font-size: 1.8em;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.feedback .feedback-text {
+  display: inline;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
