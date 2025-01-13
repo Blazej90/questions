@@ -9,6 +9,7 @@ import MicrophoneButton from "../MicrophoneButton/MicrophoneButton";
 import ResultsList from "../ResultList/ResultList";
 import axios from "axios";
 import "regenerator-runtime/runtime";
+import AIResponse from "../AIResponse/AIResponse"; 
 
 interface SpeechButtonProps {
   question: string;
@@ -16,7 +17,7 @@ interface SpeechButtonProps {
 
 const SpeechButton: React.FC<SpeechButtonProps> = ({ question }) => {
   const [recordingTime, setRecordingTime] = useState<number>(0);
-  const [results, setResults] = useState<{ text: string; time: number }[]>([]); 
+  const [results, setResults] = useState<{ text: string; time: number }[]>([]);
   const [isClient, setIsClient] = useState(false);
   const [feedback, setFeedback] = useState<string | null>(null);
 
@@ -49,7 +50,7 @@ const SpeechButton: React.FC<SpeechButtonProps> = ({ question }) => {
     if (!listening && transcript.trim()) {
       const timeSpent = recordingTime;
       setResults((prevResults) => [
-        { text: transcript.trim(), time: timeSpent }, 
+        { text: transcript.trim(), time: timeSpent },
         ...prevResults,
       ]);
       resetTranscript();
@@ -124,12 +125,7 @@ const SpeechButton: React.FC<SpeechButtonProps> = ({ question }) => {
       />
       <ClearButton onClear={handleClear} />
 
-      {feedback && (
-        <div className={styles.feedback}>
-          <strong>Feedback AI:</strong>
-          <p>{feedback}</p>
-        </div>
-      )}
+      <AIResponse feedback={feedback} />
     </div>
   );
 };
