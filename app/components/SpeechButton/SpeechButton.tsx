@@ -9,7 +9,7 @@ import MicrophoneButton from "../MicrophoneButton/MicrophoneButton";
 import ResultsList from "../ResultList/ResultList";
 import axios from "axios";
 import "regenerator-runtime/runtime";
-import AIResponse from "../AIResponse/AIResponse"; 
+import AIResponse from "../AIResponse/AIResponse";
 
 interface SpeechButtonProps {
   question: string;

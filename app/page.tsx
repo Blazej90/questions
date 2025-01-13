@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Nauka React.js</h1>
+      <h1 className={styles.title}>Ucz się React.js z AI</h1>
       <Questions onQuestionChange={setCurrentQuestion} />
       {currentQuestion && (
         <div className={styles.questionSection}>

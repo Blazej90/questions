@@ -10,6 +10,7 @@
   font-family: "Poppins", sans-serif;
   max-width: 500px;
   margin: 20px auto;
+  text-align: justify;
   transition: box-shadow 0.3s ease;
 }
 
